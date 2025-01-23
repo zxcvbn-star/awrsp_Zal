@@ -4,14 +4,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         String filePath = "D:\\JetBrains\\Zalicznie java\\untitled\\src\\TERC_Urzedowy_2025-01-20.csv";
-        List<Wojewodztwo> wojewodztwa = new MapTerc(filePath).parseCsv();
+        List<Wojewodztwo> wojewodztwa = new MapTerc(filePath).MapCSV();
 
-        TercControler controller = new TercControler(wojewodztwa);
+        TercKontroler kontroler = new TercKontroler(wojewodztwa);
 
         Scanner scanner = new Scanner(System.in);
-        String command;
+        String komenda;
 
-        System.out.println("Witaj w systemie TERC! Wpisz polecenie lub 'exit' aby zakończyć.");
         while (true) {
             System.out.println("\nDostępne polecenia:");
             System.out.println("1. wyswietlWojewodztwa");
@@ -25,45 +24,45 @@ public class Main {
             System.out.println("exit - zakończ program");
 
             System.out.print("\nPodaj polecenie: ");
-            command = scanner.nextLine();
+            komenda = scanner.nextLine();
 
-            if (command.equalsIgnoreCase("exit")) {
+            if (komenda.equalsIgnoreCase("exit")) {
                 System.out.println("Zakończono działanie programu.");
                 break;
             }
 
             try {
-                if (command.equals("wyswietlWojewodztwa")) {
-                    controller.wyswietlWojewodztwa();
-                } else if (command.startsWith("znajdzWojewodztwoPoNazwie")) {
-                    String[] parts = command.split(" ", 2);
+                if (komenda.equals("wyswietlWojewodztwa") || komenda.equals("1")) {
+                    kontroler.wyswietlWojewodztwa();
+                } else if (komenda.startsWith("znajdzWojewodztwoPoNazwie") || komenda.startsWith("2")) {
+                    String[] parts = komenda.split(" ", 2);
                     if (parts.length > 1) {
-                        controller.znajdzWojewodztwoPoNazwie(parts[1]);
+                        kontroler.znajdzWojewodztwoPoNazwie(parts[1]);
                     } else {
                         System.out.println("Podaj nazwę województwa.");
                     }
-                } else if (command.startsWith("znajdzPowiatPoNazwie")) {
-                    String[] parts = command.split(" ", 2);
+                } else if (komenda.startsWith("znajdzPowiatPoNazwie") || komenda.startsWith("3")) {
+                    String[] parts = komenda.split(" ", 2);
                     if (parts.length > 1) {
-                        controller.znajdzPowiatPoNazwie(parts[1]);
+                        kontroler.znajdzPowiatPoNazwie(parts[1]);
                     } else {
                         System.out.println("Podaj nazwę powiatu.");
                     }
-                } else if (command.startsWith("znajdzGminaPoNazwie")) {
-                    String[] parts = command.split(" ", 2);
+                } else if (komenda.startsWith("znajdzGminaPoNazwie") || komenda.startsWith("4")) {
+                    String[] parts = komenda.split(" ", 2);
                     if (parts.length > 1) {
-                        controller.znajdzGminaPoNazwie(parts[1]);
+                        kontroler.znajdzGminaPoNazwie(parts[1]);
                     } else {
                         System.out.println("Podaj nazwę gminy.");
                     }
-                } else if (command.equals("wyswietlLiczbeWojewodzctw")) {
-                    controller.wyswietlLiczbeWojewodzctw();
-                } else if (command.equals("wyswietlLiczbePowiatow")) {
-                    controller.wyswietlLiczbePowiatow();
-                } else if (command.equals("wyswietlLiczbeGmin")) {
-                    controller.wyswietlLiczbeGmin();
-                } else if (command.equals("wyswietlLiczbeRodziGmin")) {
-                    controller.wyswietlLiczbeRodziGmin();
+                } else if (komenda.equals("wyswietlLiczbeWojewodzctw") || komenda.equals("5")) {
+                    kontroler.wyswietlLiczbeWojewodzctw();
+                } else if (komenda.equals("wyswietlLiczbePowiatow") || komenda.equals("6")) {
+                    kontroler.wyswietlLiczbePowiatow();
+                } else if (komenda.equals("wyswietlLiczbeGmin") || komenda.equals("7")) {
+                    kontroler.wyswietlLiczbeGmin();
+                } else if (komenda.equals("wyswietlLiczbeRodziGmin") || komenda.equals("8")) {
+                    kontroler.wyswietlLiczbeRodziGmin();
                 } else {
                     System.out.println("Nieznane polecenie. Spróbuj ponownie.");
                 }
@@ -71,8 +70,6 @@ public class Main {
                 System.out.println("Wystąpił błąd podczas wykonywania polecenia: " + e.getMessage());
             }
         }
-
         scanner.close();
     }
-
 }

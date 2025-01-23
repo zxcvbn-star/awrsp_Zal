@@ -21,7 +21,7 @@ class MapTerc {
     public MapTerc(String filePath) {
         this.filePath = filePath;
     }
-    public List<Wojewodztwo> parseCsv() {
+    public List<Wojewodztwo> MapCSV() {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
             String line;
 

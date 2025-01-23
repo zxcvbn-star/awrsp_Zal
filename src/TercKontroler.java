@@ -1,9 +1,9 @@
 import java.util.List;
 
-public class TercControler {
+public class TercKontroler {
     private final List<Wojewodztwo> wojewodztwa;
 
-    public TercControler(List<Wojewodztwo> wojewodztwa) {
+    public TercKontroler(List<Wojewodztwo> wojewodztwa) {
         this.wojewodztwa = wojewodztwa;
     }
 
@@ -19,9 +19,9 @@ public class TercControler {
         }
     }
 
-    public void znajdzWojewodztwoPoNazwie(String name) {
+    public void znajdzWojewodztwoPoNazwie(String nazwa) {
         for (Wojewodztwo woj : wojewodztwa) {
-            if (woj.getNazwa().equalsIgnoreCase(name.trim())) {
+            if (woj.getNazwa().equalsIgnoreCase(nazwa.trim())) {
                 System.out.println("Województwo: " + woj.getNazwa());
                 for (Powiat powiat : woj.getPowiaty()) {
                     System.out.println("  Powiat: " + powiat.getNazwa());
@@ -30,10 +30,10 @@ public class TercControler {
         }
     }
 
-    public void znajdzPowiatPoNazwie(String name) {
+    public void znajdzPowiatPoNazwie(String nazwa) {
         for (Wojewodztwo woj : wojewodztwa) {
             for (Powiat powiat : woj.getPowiaty()) {
-                if (powiat.getNazwa().equalsIgnoreCase(name.trim())) {
+                if (powiat.getNazwa().equalsIgnoreCase(nazwa.trim())) {
                     System.out.println("  Powiat: " + powiat.getNazwa());
                     for (Gmina gmina : powiat.getGminy()) {
                         System.out.println("    Gmina: " + gmina.getNazwa() + " -> Rodzaj: " + gmina.getRodzajGminy());
@@ -43,11 +43,11 @@ public class TercControler {
         }
     }
 
-    public void znajdzGminaPoNazwie(String name) {
+    public void znajdzGminaPoNazwie(String nazwa) {
         for (Wojewodztwo woj : wojewodztwa) {
             for (Powiat powiat : woj.getPowiaty()) {
                 for (Gmina gmina : powiat.getGminy()) {
-                    if (gmina.getNazwa().equalsIgnoreCase(name.trim())) {
+                    if (gmina.getNazwa().equalsIgnoreCase(nazwa.trim())) {
                         System.out.println("Gmina: " + gmina.getNazwa() + " -> Rodzaj: " + gmina.getRodzajGminy());
                     }
                 }
